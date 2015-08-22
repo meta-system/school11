@@ -1,6 +1,5 @@
 package sorting_algorithms;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Bubblesort {
@@ -11,11 +10,10 @@ public class Bubblesort {
 		genNumbs();
 		print();
 		System.out.println();
-		//bSort();
+		bSort();
 		//iSort();
-		mSort(toBeSorted);
 		System.out.println();
-		System.out.println(Arrays.toString(toBeSorted));
+		print();
 
 	}
 
@@ -25,60 +23,6 @@ public class Bubblesort {
 			toBeSorted[i] = rand.nextInt(20) + 1;
 		}
 
-	}
-	public static void mSort(int [] array){
-		int N = array.length;
-
-
-		if (N<=1){
-			return;
-		}
-		int middle = N/2;
-		int [] lArray = new int [middle];
-		int [] rArray = new int [N-middle];
-
-		System.arraycopy(array, 0, lArray, 0, middle);
-		System.arraycopy(array, middle, rArray, 0, (N-middle));
-		
-		//System.out.println("main" + Arrays.toString(array));
-		//System.out.println("left" + Arrays.toString(lArray));
-		//System.out.println("right" + Arrays.toString(rArray));
-
-		mSort(lArray);
-		mSort(rArray);
-		merge(array, lArray, rArray);
-
-	}
-
-	public static void merge(int[] array, int [] lArray, int [] rArray) {
-		int lIndex = 0;
-		int rIndex = 0;
-		for (int i = 0; i < array.length; i++){
-			if((lIndex < lArray.length)&&(rIndex < rArray.length)){
-				if (lArray[lIndex] < rArray[rIndex]){
-					array[i] = lArray[lIndex];
-					lIndex++;
-				}
-				else {
-					array[i] = rArray[rIndex];
-					rIndex++;
-				}
-			}
-			else {
-				if (lIndex < lArray.length){
-					array[i] = lArray[lIndex];
-					lIndex++;
-				}
-				else {
-					array[i] = rArray[rIndex];
-					rIndex++;
-					
-				}
-				
-			}
-			
-			
-		}
 	}
 
 	public static void bSort() {
@@ -94,7 +38,7 @@ public class Bubblesort {
 					swap = true;
 				}
 			}
-		} while (swap == true);
+		} while (swap = false);
 	}
 
 	public static int iSort(){
@@ -116,7 +60,7 @@ public class Bubblesort {
 					//j = 0;
 					break;
 				}
-
+				
 			}
 		}
 		return trys;

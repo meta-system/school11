@@ -40,9 +40,9 @@ public class Bubblesort {
 		System.arraycopy(array, 0, lArray, 0, middle);
 		System.arraycopy(array, middle, rArray, 0, (N-middle));
 		
-		//System.out.println("main" + Arrays.toString(array));
-		//System.out.println("left" + Arrays.toString(lArray));
-		//System.out.println("right" + Arrays.toString(rArray));
+		System.out.println("main" + Arrays.toString(array));
+		System.out.println("left" + Arrays.toString(lArray));
+		System.out.println("right" + Arrays.toString(rArray));
 
 		mSort(lArray);
 		mSort(rArray);
@@ -72,7 +72,7 @@ public class Bubblesort {
 				else {
 					array[i] = rArray[rIndex];
 					rIndex++;
-					
+					System.out.println(Arrays.toString(array));
 				}
 				
 			}

@@ -15,7 +15,7 @@ public class Bubblesort {
 		//iSort();
 		mSort(toBeSorted);
 		System.out.println();
-		System.out.println(Arrays.toString(toBeSorted));
+		print();
 
 	}
 
@@ -34,53 +34,18 @@ public class Bubblesort {
 			return;
 		}
 		int middle = N/2;
-		int [] lArray = new int [middle];
-		int [] rArray = new int [N-middle];
-
-		System.arraycopy(array, 0, lArray, 0, middle);
-		System.arraycopy(array, middle, rArray, 0, (N-middle));
+		int lLength = middle;
+		int rLength = N - lLength;
+		int [] lArray = new int [lLength];
+		int [] rArray = new int [rLength];
 		
-		//System.out.println("main" + Arrays.toString(array));
-		//System.out.println("left" + Arrays.toString(lArray));
-		//System.out.println("right" + Arrays.toString(rArray));
+		System.arraycopy(array, 0, lArray, 0, lLength);
+		System.arraycopy(array, middle, rArray, 0, rLength);
 
-		mSort(lArray);
-		mSort(rArray);
-		merge(array, lArray, rArray);
+		System.out.println(Arrays.toString(lArray));
+		System.out.println(Arrays.toString(rArray));
 
 	}
-
-	public static void merge(int[] array, int [] lArray, int [] rArray) {
-		int lIndex = 0;
-		int rIndex = 0;
-		for (int i = 0; i < array.length; i++){
-			if((lIndex < lArray.length)&&(rIndex < rArray.length)){
-				if (lArray[lIndex] < rArray[rIndex]){
-					array[i] = lArray[lIndex];
-					lIndex++;
-				}
-				else {
-					array[i] = rArray[rIndex];
-					rIndex++;
-				}
-			}
-			else {
-				if (lIndex < lArray.length){
-					array[i] = lArray[lIndex];
-					lIndex++;
-				}
-				else {
-					array[i] = rArray[rIndex];
-					rIndex++;
-					
-				}
-				
-			}
-			
-			
-		}
-	}
-
 	public static void bSort() {
 		int temp = 0;
 		boolean swap = false;

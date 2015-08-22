@@ -39,10 +39,9 @@ public class Bubblesort {
 
 		System.arraycopy(array, 0, lArray, 0, middle);
 		System.arraycopy(array, middle, rArray, 0, (N-middle));
-		
-		//System.out.println("main" + Arrays.toString(array));
-		//System.out.println("left" + Arrays.toString(lArray));
-		//System.out.println("right" + Arrays.toString(rArray));
+
+		System.out.println(Arrays.toString(lArray));
+		System.out.println(Arrays.toString(rArray));
 
 		mSort(lArray);
 		mSort(rArray);
@@ -54,30 +53,15 @@ public class Bubblesort {
 		int lIndex = 0;
 		int rIndex = 0;
 		for (int i = 0; i < array.length; i++){
-			if((lIndex < lArray.length)&&(rIndex < rArray.length)){
-				if (lArray[lIndex] < rArray[rIndex]){
+			if(lIndex == lArray.length){
+				if ((lArray[lIndex] < rArray[rIndex]){
 					array[i] = lArray[lIndex];
 					lIndex++;
 				}
-				else {
-					array[i] = rArray[rIndex];
-					rIndex++;
-				}
+			}else {
+				array[i] = rArray[rIndex];
+				rIndex++;
 			}
-			else {
-				if (lIndex < lArray.length){
-					array[i] = lArray[lIndex];
-					lIndex++;
-				}
-				else {
-					array[i] = rArray[rIndex];
-					rIndex++;
-					
-				}
-				
-			}
-			
-			
 		}
 	}
 
