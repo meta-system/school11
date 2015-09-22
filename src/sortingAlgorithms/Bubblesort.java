@@ -2,6 +2,7 @@ package sortingAlgorithms;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Bubblesort {
 
@@ -9,16 +10,31 @@ public class Bubblesort {
 
 	public static void main(String[] args) {
 		genNumbs();	//das füllt den Array toBeSorted mit zufälligen Zahlen aus
-		System.out.println("unsortiert: " + Arrays.toString(toBeSorted)
-			+ "\nBitte geben Sie ein, welchen Sortieralgorithmus Sie verwenden wollen:"
+		Scanner sc = new Scanner(System.in);
+		boolean test = true;
+		System.out.println("unsortiert: " + Arrays.toString(toBeSorted));
+		do {
+			System.out.println("Bitte geben Sie ein, welchen Sortieralgorithmus Sie verwenden wollen:"
+
 			+ "\n [1] Bubblesort"
 			+ "\n [2] Insertsort"
 			+ "\n [3] Mergesort");
+
+			switch (sc.nextInt()){
+				case 1: bSort(); break;
+				case 2: iSort(); break;
+				case 3: mSort(toBeSorted); break;
+				default: System.out.println("Fehlerhafte Eingabe!");
+					test = false;
+					break;
+			}
+		} while (!test);
 		
 		//bSort();
 		//iSort();
 		mSort(toBeSorted);
 		System.out.println("\nsortiert:   " + Arrays.toString(toBeSorted));
+		sc.close();
 
 	}
 
@@ -42,10 +58,6 @@ public class Bubblesort {
 
 		System.arraycopy(array, 0, lArray, 0, middle);
 		System.arraycopy(array, middle, rArray, 0, (N-middle));
-		
-		//System.out.println("main" + Arrays.toString(array));
-		//System.out.println("left" + Arrays.toString(lArray));
-		//System.out.println("right" + Arrays.toString(rArray));
 
 		mSort(lArray);
 		mSort(rArray);
@@ -75,12 +87,9 @@ public class Bubblesort {
 				else {
 					array[i] = rArray[rIndex];
 					rIndex++;
-					
-				}
-				
-			}
-			
-			
+
+				}	
+			}	
 		}
 	}
 
@@ -119,14 +128,8 @@ public class Bubblesort {
 					//j = 0;
 					break;
 				}
-
 			}
 		}
 		return trys;
-	}
-	public static void print() {
-		for (int i= 0; i < toBeSorted.length; i++){
-			System.out.print(toBeSorted[i] + ", ");
-		}
 	}
 }
