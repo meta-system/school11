@@ -8,14 +8,17 @@ public class Bubblesort {
 	public static int[] toBeSorted = new int[20];
 
 	public static void main(String[] args) {
-		genNumbs();
-		print();
-		System.out.println();
+		genNumbs();	//das füllt den Array toBeSorted mit zufälligen Zahlen aus
+		System.out.println("unsortiert: " + Arrays.toString(toBeSorted)
+			+ "\nBitte geben Sie ein, welchen Sortieralgorithmus Sie verwenden wollen:"
+			+ "\n [1] Bubblesort"
+			+ "\n [2] Insertsort"
+			+ "\n [3] Mergesort");
+		
 		//bSort();
 		//iSort();
 		mSort(toBeSorted);
-		System.out.println();
-		System.out.println(Arrays.toString(toBeSorted));
+		System.out.println("\nsortiert:   " + Arrays.toString(toBeSorted));
 
 	}
 
