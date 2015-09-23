@@ -30,8 +30,7 @@ public class Bubblesort {
 			}
 		} while (!test);
 		
-		//bSort();
-		//iSort();
+		
 		mSort(toBeSorted);
 		System.out.println("\nsortiert:   " + Arrays.toString(toBeSorted));
 		sc.close();
