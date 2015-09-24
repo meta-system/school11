@@ -5,15 +5,15 @@ public class SortAlgorithms {
 	public static int[] mSort(int[] array){
 		int N = array.length;
 
-
 		if (N<=1){
 			return array;
 		}
+		
 		int middle = N/2;
 		int [] lArray = new int [middle];
 		int [] rArray = new int [N-middle];
 
-		System.arraycopy(array, 0, lArray, 0, middle);
+		System.arraycopy(array,		 0, lArray, 0, middle);
 		System.arraycopy(array, middle, rArray, 0, (N-middle));
 
 		lArray = mSort(lArray);
