@@ -1,49 +1,34 @@
 package sortingAlgorithms;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class SortMain {
 
 	public static Scanner myScanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		boolean error = false;
-		// Scanner sc = new Scanner(System.in);
 		System.out.println("Hallo. Dies ist ein Programm zur Sortierung einer Reihe ganzzahliger Zahlen.");
-		int myLength = input("Bitte geben Sie die Länge der Zahlenreihe ein!");
-		/*
-		 * do { error = false; System.out.println(
-		 * "Bitte geben Sie ein, wie viele Zahlen die Reihe beinhalten soll.");
-		 * try { inputLength = sc.nextInt(); } catch
-		 * (java.util.InputMismatchException e) { error = true;
-		 * System.out.println("Fehlerhafte Eingabe!"); } } while (error);
-		 */
+		int[] toBeSorted = new int[20];
+		int[] sorted = new int[20];
+		boolean error = false;
 
-		int[] toBeSorted = new int[myLength];
-		int[] sorted = new int[toBeSorted.length];
-		int myInput = 0;
 		do {
-			myInput = input("Wollen Sie "
-					+ "\n[1] Eigene Zahlen eingeben oder"
-					+ "\n[2] Zufallsgenerierte Zahlen verwenden?");
-			/*
-			 * System.out.println("Wollen Sie " +
-			 * "\n[1] Eigene Zahlen eingeben oder" +
-			 * "\n[2] Zufallsgenerierte Zahlen verwenden?");
-			 *
-			 * do { try { error = false; myInput = sc.nextInt(); } catch
-			 * (java.util.InputMismatchException e) { error = true;
-			 * System.out.println("Fehlerhafte Eingabe!"); } } while (error);
-			 */
+
 			error = false;
 
-			switch (myInput) {
+			switch (input("Wollen Sie "
+					+ "\n[1] Eigene Zahlen eingeben oder"
+					+ "\n[2] Zufallsgenerierte Zahlen verwenden?")) {
 				case 1:
+					toBeSorted = readNumbs();
 					break;
 				case 2:
-					toBeSorted = genNumbs(toBeSorted.length);
+					toBeSorted = genNumbs(input("Bitte geben Sie die Länge der Zahlenreihe ein!"));
 					break;
 				default:
 					System.out.println("Fehlerhafte Eingabe!");
@@ -55,20 +40,13 @@ public class SortMain {
 
 		System.out.println("unsortiert: " + Arrays.toString(toBeSorted));
 
-		int myAlgorithm = 0;
 		do {
-			myAlgorithm = input("Bitte geben Sie ein, welchen Sortieralgorithmus Sie verwenden wollen:"
+
+			error = false;
+			switch (input("Bitte geben Sie ein, welchen Sortieralgorithmus Sie verwenden wollen:"
 					+ "\n [1] Bubblesort"
 					+ "\n [2] Insertsort"
-					+ "\n [3] Mergesort");
-			/*
-			 * System.out.println(
-			 * "Bitte geben Sie ein, welchen Sortieralgorithmus Sie verwenden wollen:"
-			 * + "\n [1] Bubblesort" + "\n [2] Insertsort" + "\n [3] Mergesort"
-			 * );
-			 */
-			error = false;
-			switch (myAlgorithm) {
+					+ "\n [3] Mergesort")) {
 				case 1:
 					sorted = SortAlgorithms.bSort(toBeSorted);
 					break;
@@ -85,9 +63,7 @@ public class SortMain {
 			}
 		} while (error);
 
-		System.out.println("\nsortiert:   " + Arrays.toString(sorted));
-		// sc.close();
-
+		System.out.println("\nsortiert: " + Arrays.toString(sorted));
 	}
 
 	public static int[] genNumbs(int length) {
@@ -96,25 +72,14 @@ public class SortMain {
 
 		for (int i = 0; i < array.length; i++) {
 			array[i] = rand.nextInt(20) + 1;
-			// System.out.print()
 		}
 
 		return array;
 	}
 
-	/**
-	 * Scanner sc = new Scanner(System.in);
-	 * sc.useDelimiter(System.getProperty("line.separator")); while
-	 * (sc.hasNextInt()){ int i = sc.nextInt();
-	 *
-	 * //... do stuff with i ... }
-	 */
-
 	public static int input(String message) {
 		int input = 0;
 		boolean error = false;
-		// Scanner sc = new Scanner(System.in);
-		// System.out.println("");
 
 		do {
 			try {
@@ -130,7 +95,29 @@ public class SortMain {
 			}
 		} while (error);
 
-		// sc.close();
+		return input;
+	}
+
+	public static int[] readNumbs() {
+		System.out.println("Bitte geben Sie die zu sortierenden Zahlen, separiert durch ein Leerzeichen, ein.");
+		System.out.println("Wenn Sie fertig sind, drücken Sie 'Enter'.");
+		Queue<Integer> inputQ = new LinkedList<Integer>();
+
+		Pattern delimiters = Pattern.compile(System.getProperty("line.separator") + "|\\s");
+		myScanner.useDelimiter(delimiters);
+
+		while (myScanner.hasNextInt()) {
+			inputQ.add(myScanner.nextInt());
+
+		}
+		myScanner.nextLine();
+
+		int[] input = new int[inputQ.size()];
+		int i = 0;
+		while (inputQ.peek() != null) {
+			input[i] = inputQ.poll();
+			i++;
+		}
 		return input;
 	}
 
